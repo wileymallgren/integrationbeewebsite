@@ -1,0 +1,89 @@
+:root {
+  --bg-color: #121212;
+  --hover-bg-color: #282828;
+  --panel-bg-color: #383838;
+  --border-color: #ccc;
+  --accent-color: #1e90ff;
+  --font-family: Arial, sans-serif;
+  --font-size: 18px;
+  --padding: 15px;
+  --transition-speed: 0.4s;
+}
+
+body {
+  font-family: var(--font-family);
+  padding: 20px;
+  background-color: var(--bg-color);
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 24px;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1200px) {
+    .title {
+        font-size: 2em; /* Adjust font size for tablets and smaller screens */
+    }
+}
+
+@media (max-width: 800px) {
+    .title {
+        font-size: 1.5em; /* Further reduce font size for mobile screens */
+    }
+}
+
+@media (max-width: 500px) {
+    .title {
+        font-size: 1.2em; /* Even smaller font for very small screens */
+    }
+}
+
+
+.overview {
+  color: var(--border-color);
+  width: 90%;
+}
+
+.accordion {
+  background-color: var(--bg-color);
+  color: var(--accent-color);
+  cursor: pointer;
+  padding: var(--padding);
+  margin-bottom: 10px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: var(--font-size);
+  transition: background-color 0.2s ease;
+}
+
+.accordion:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-speed) ease-out;
+  background-color: var(--panel-bg-color);
+  padding: 0 var(--padding);
+  border-left: 2px solid var(--border-color);
+  border-right: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.panel-content {
+  padding: 10px 0;
+  color: var(--border-color);
+}
+
+.description {
+  width: 50%;
+}

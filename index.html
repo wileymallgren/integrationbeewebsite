@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <meta charset="UTF-8" />
+    <title>Integration Bee Tricks</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2 class="title">
+      \(\int\)ntegration \(\boldsymbol{\beta}\)ee \(\LARGE \tau\)ricks
+    </h2>
+    <p class="overview">
+      This website is here to aid you in techniques for Integration Bees that
+      aren't taught in a typical Calculus class. It is a work in progress, and I
+      will be adding more content when I have time. If you have any
+      suggestions, please let me know! I am also open to any suggestions for the
+      website itself. I am not a web developer, so this website is also just an
+      excuse for me to learn MathJax.
+    </p>
+
+    <button class="accordion">Easy</button>
+    <div class="panel">
+      <div class="panel-content">
+        <h3>King's Rule</h3>
+        <p2 class="description">
+          King's Rule is a method in which you replace every variable of
+          integration in a definite integral with the upper bound, plus the
+          lower bound, minus the variable of integration. \[ \int_a^b f(x)\,dx =
+          \int_a^b f(a + b - x)\,dx \]
+        </p2>
+        <h4>Why is it useful?</h4>
+        <p2 class="description">
+          King's Rule is useful when making the change above will simplify the
+          integral. This is especially useful for trigonometric integrals in
+          which co-function identities can be used to simplify the integral.
+        </p2>
+        <h4>Example</h4>
+        <button class="accordion">Show Example</button>
+        <div class="panel">
+          <div class="panel-content">
+            <p2>
+              Evaluate the integral:
+              <br /><br />
+              \[ \int_0^{\pi} \frac{x \sin(x)}{1 + \cos^2(x)} \, dx \]
+              <br />
+              At first glance, this is a messy integral with no easy
+              antiderivative. But King’s Rule gives us a way in:
+              <br /><br />
+              Using King’s Rule: \[ \int_a^b f(x)\,dx = \int_a^b f(a + b -
+              x)\,dx \] For this problem, \( a = 0 \), \( b = \pi \), so \( a +
+              b - x = \pi - x \). Apply it:
+              <br /><br />
+              \[ \int_0^{\pi} \frac{x \sin(x)}{1 + \cos^2(x)} \, dx =
+              \int_0^{\pi} \frac{(\pi - x) \sin(\pi - x)}{1 + \cos^2(\pi - x)}
+              \, dx \]
+              <br />
+              Now use trigonometric identities: \[ \sin(\pi - x) = \sin(x),
+              \quad \cos^2(\pi - x) = \cos^2(x) \] So the reflected integral
+              becomes:
+              <br /><br />
+              \[ \int_0^{\pi} \frac{(\pi - x) \sin(x)}{1 + \cos^2(x)} \, dx \]
+              <br />
+              Now call the original integral \( I \):
+              <br /><br />
+              \[ I = \int_0^{\pi} \frac{x \sin(x)}{1 + \cos^2(x)} \, dx \] And
+              from King’s Rule, we also have:
+              <br /><br />
+              \[ I = \int_0^{\pi} \frac{(\pi - x) \sin(x)}{1 + \cos^2(x)} \, dx
+              \]
+              <br />
+              Add both expressions for \( I \):
+              <br /><br />
+              \[ 2I = \int_0^{\pi} \left( \frac{x \sin(x)}{1 + \cos^2(x)} +
+              \frac{(\pi - x) \sin(x)}{1 + \cos^2(x)} \right) dx \]
+              <br />
+              \[ = \int_0^{\pi} \frac{\pi \sin(x)}{1 + \cos^2(x)} \, dx \]
+              <br />
+              \[ 2I = \pi \int_0^{\pi} \frac{\sin(x)}{1 + \cos^2(x)} \, dx \]
+              <br />
+              Now solve the simpler integral using the substitution \( u =
+              \cos(x) \), \( du = -\sin(x)dx \):
+              <br /><br />
+              Change of limits: when \( x = 0 \), \( u = 1 \); when \( x = \pi
+              \), \( u = -1 \]
+              <br /><br />
+              \[ \int_0^{\pi} \frac{\sin(x)}{1 + \cos^2(x)} \, dx = -\int_1^{-1}
+              \frac{1}{1 + u^2} \, du = \int_{-1}^1 \frac{1}{1 + u^2} \, du \]
+              <br />
+              \[ = \tan^{-1}(1) - \tan^{-1}(-1) = \frac{\pi}{4} -
+              \left(-\frac{\pi}{4}\right) = \frac{\pi}{2} \]
+              <br />
+              Substitute back:
+              <br /><br />
+              \[ 2I = \pi \cdot \frac{\pi}{2} = \frac{\pi^2}{2} \Rightarrow I =
+              \frac{\pi^2}{4} \]
+              <br />
+              <b>Final Answer:</b>
+              <br />
+              \[ \int_0^{\pi} \frac{x \sin(x)}{1 + \cos^2(x)} \, dx =
+              \frac{\pi^2}{4} \]
+            </p2>
+          </div>
+        </div>
+        <h3>Tabular Method (IBP)</h3>
+        <p2 class="description">
+          The Tabular Method is a method of integration by parts that is useful
+          for integrals of the form \( \int u \, dv \) where \( u \) and \( dv
+          \) are both easy to differentiate and integrate, respectively. It is a
+          faster way to do integration by parts than the standard method. this
+          is especially true for repeated integration by parts.
+        </p2>
+        <h4>The Method</h4>
+        <p2>
+          1. Choose \( u \) and \( dv \):<br />
+          - Select \( u \), the function to differentiate (typically, choose a
+          polynomial or simpler function).<br />
+          - Select \( dv \), the function to integrate (typically an
+          exponential, trigonometric, or algebraic function).<br /><br />
+
+          2. Differentiate \( u \) and integrate \( dv \):<br />
+          - Keep differentiating \( u \) and integrating \( dv \) until the
+          derivative of \( u \) becomes zero, until you can integrate going
+          across, or until you get in a loop<br />
+          - Alternate the signs of the terms, starting with a positive sign.<br /><br />
+
+          3. Construct the Tabular Table:<br />
+          Use the following format for the table:<br /><br />
+
+          $$ \begin{array}{c|c} \text{Differentiate } u & \text{Integrate } dv
+          \\ \hline u_1 & v_1 \\ u_2 & v_2 \\ u_3 & v_3 \\ \vdots & \vdots \\
+          u_n & v_n \\ \end{array} $$<br /><br />
+
+          4. Apply the Integration by Parts Formula:<br />
+          Use the formula:<br /><br />
+
+          $$ \int u \, dv = uv - \int v \, du $$<br /><br />
+
+          5. Combine the Results:<br />
+          Multiply the corresponding \( u \) and \( v \) terms diagonally from
+          the table. Alternate the signs and combine the results to complete the
+          integral.<br /><br />
+
+          Final Result:<br />
+          The solution will be of the form:<br /><br />
+
+          $$ \int u \, dv = \text{(first term)} - \text{(remaining integral)} +
+          C $$<br /><br />
+
+          This method is very helpful for simplifying integrals that involve the
+          product of a polynomial and an exponential or trigonometric function.
+        </p2>
+        <h4>Example</h4>
+        <button class="accordion">Show Example</button>
+        <div class="panel">
+          <div class="panel-content">
+            <p>We want to compute the integral:</p>
+            <p>\[ \int x^2 e^x \, dx \]</p>
+
+            <p>Let:</p>
+            <ul>
+              <li>\( u = x^2 \) (to be differentiated)</li>
+              <li>\( dv = e^x \, dx \) (to be integrated)</li>
+            </ul>
+
+            <p>We construct a table:</p>
+
+            <table class="center" border="1" cellpadding="5" cellspacing="0">
+              <tr>
+                <th>Sign</th>
+                <th>Derivative (u)</th>
+                <th>Integral (dv)</th>
+              </tr>
+              <tr>
+                <td>+</td>
+                <td>\( x^2 \)</td>
+                <td>\( e^x \)</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>\( 2x \)</td>
+                <td>\( e^x \)</td>
+              </tr>
+              <tr>
+                <td>+</td>
+                <td>\( 2 \)</td>
+                <td>\( e^x \)</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>\( 0 \)</td>
+                <td>\( e^x \)</td>
+              </tr>
+            </table>
+
+            <p>Now apply the tabular integration formula:</p>
+
+            <p>\[ \int x^2 e^x \, dx = x^2 e^x - 2x e^x + 2 e^x + C \]</p>
+
+            <p>Final Answer:</p>
+            <p>\[ \boxed{e^x(x^2 - 2x + 2) + C} \]</p>
+          </div>
+        </div>
+        <h3>\(n-n=0\)</h3>
+        <p2 class="description">
+          Though this trick has no formal name (that I am aware of), it is important
+          to know. This basically boils down to knowing that you can add a number to
+          something if you also subtract it. This is best seen by the example below.
+        </p2>
+        <h4>Example</h4>
+        <button class="accordion">Show Example</button>
+        <div class="panel">
+          <div class="panel-content">
+            <p> 
+  $$\int \frac{2x + 1}{2x + 2} \, dx$$<br><br>
+
+<br>Rewrite the numerator to help simplify:<br>
+  $$2x + 1 = (2x + 2) - 1$$<br>
+  So:<br>
+  $$\frac{2x + 2 - 1}{2x + 2} = \frac{2x + 2}{2x + 2} - \frac{1}{2x + 2}$$<br>
+  $$= 1 - \frac{1}{2(x + 1)}$$<br><br>
+
+<br>Integrate term by term:<br>
+  $$\int \left(1 - \frac{1}{2(x + 1)}\right) dx = \int 1 \, dx - \frac{1}{2} \int \frac{1}{x + 1} \, dx$$<br><br>
+
+<br>Evaluate each integral:<br>
+  $$\int 1 \, dx = x,\quad \int \frac{1}{x + 1} \, dx = \ln|x + 1|$$<br><br>
+
+<br>Final Answer:</br>
+  $$\boxed{x - \frac{1}{2} \ln|x + 1| + C}$$
+</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="accordion">Advanced</button>
+    <div class="panel">
+      <div class="panel-content">
+        <p>
+          <h4>Weirstrass Substitution</h4>
+          <p2 class="description">
+            The Weierstrass substitution is a technique used to simplify the
+            integration of trigonometric functions. It is particularly useful
+            for integrals involving sine and cosine functions. The substitution
+            is given by:
+            \[ t = \tan\left(\frac{x}{2}\right) \]
+            From this we get the following:
+            \[ \sin(x) = \frac{2t}{1 + t^2} \]
+            \[ \cos(x) = \frac{1 - t^2}{1 + t^2} \]
+            \[ dx = \frac{2dt}{1 + t^2}\]
+            Similar substitutions can be found for the other three trigonometric functions.
+            <br /><br />
+            Interestingly, this substitution follows the same pattern for hyperbolic
+            trigonometric function except addition and subtraction are flipped
+            <br /><br />
+          <h4>Why is it useful?</h4>
+          <p2 class="description">
+            The Weierstrass substitution is useful because it allows us to
+            convert trigonometric integrals into rational functions, which are
+            often easier to integrate. This is especially helpful when dealing
+            with integrals that involve products or powers of sine and cosine.
+          </p2>
+          <h4>Example</h4>
+          <button class="accordion">Show Example</button>
+          <div class="panel">
+            <div class="panel-content">
+              <p2>
+                  Let’s evaluate the integral:
+                  \[
+                  \int \frac{dx}{1+\sec x}
+                  \]
+                  using the Weierstrass substitution.
+                  <br /><br />
+                  First, note the substitution:
+                  \[
+                  t = \tan\frac{x}{2}, \quad dx = \frac{2\,dt}{1+t^2}, \quad \sec x = \frac{1+t^2}{1-t^2}.
+                  \]
+                  Substitute these into the integral:
+                  \[
+                  \int \frac{dx}{1+\sec x} = \int \frac{1}{1+\frac{1+t^2}{1-t^2}} \cdot \frac{2\,dt}{1+t^2}.
+                  \]
+                  Simplify the denominator term:
+                  \[
+                  1+\frac{1+t^2}{1-t^2} = \frac{(1-t^2)+(1+t^2)}{1-t^2} = \frac{2}{1-t^2}.
+                  \]
+                  Thus, the integral becomes:
+                  \[
+                  \int \frac{dx}{1+\sec x} = \int \frac{1-t^2}{2} \cdot \frac{2\,dt}{1+t^2} = \int \frac{1-t^2}{1+t^2}\,dt.
+                  \]
+                  Separate the fraction:
+                  \[
+                  \frac{1-t^2}{1+t^2} = 1 - \frac{2t^2}{1+t^2},
+                  \]
+                  So that:
+                  \[
+                  \int \frac{1-t^2}{1+t^2}\,dt = \int 1\,dt - 2\int \frac{t^2}{1+t^2}\,dt.
+                  \]
+                  Notice that:
+                  \[
+                  \frac{t^2}{1+t^2} = 1 - \frac{1}{1+t^2},
+                  \]
+                  Which gives:
+                  \[
+                  \int \frac{t^2}{1+t^2}\,dt = t - \arctan t.
+                  \]
+                  Therefore, combining results:
+                  \[
+                  \int \frac{1-t^2}{1+t^2}\,dt = t - 2\left(t - \arctan t\right) + C = -t + 2\arctan t + C.
+                  \]
+                  Substituting back \( t = \tan\frac{x}{2} \), we obtain:
+                  \[
+                  -\tan\frac{x}{2} + 2\arctan\!\Bigl(\tan\frac{x}{2}\Bigr) + C.
+                  \]
+                  Assuming the principal value \( \arctan\!\left(\tan\frac{x}{2}\right) = \frac{x}{2} \), the final answer is:
+                  \[
+                  \boxed{x - \tan\frac{x}{2} + C.}
+                  \]
+              </p2>
+            </div>
+          </div>
+          <h4>More Is To Come...</h4>
+        </p>
+      </div>
+    </div>
+    <h2 class="title" style="color: #CCC;">Current Challenge Problem:</h2>
+    <p style="color: #CCC;">
+      \[\int_0^{\frac{\pi}{2}} \frac{1}{1 + \tan^{\cos(4x)}(x)} \, dx\]
+    </p>
+    <script src="script.js"></script>
+  </body>
+</html>
